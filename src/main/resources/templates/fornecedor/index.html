@@ -13,15 +13,17 @@
 
             <table class="table">
                 <thead class="thead-light">
-                    <th>Nome</th>
-                    <th>Telefone</th>
-                    <th>Email</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Email</th>
+                    <th></th>
                 </thead>
                 <tbody>
                     <tr th:each="umfornecedor : ${listafornecedores}">
                         <td th:text="${umfornecedor.nome}"></td>
                         <td th:text="${umfornecedor.telefone}"></td>
                         <td th:text="${umfornecedor.email}"></td>
+                        <td><a th:href="@{'/fornecedor/alterar/' + ${umfornecedor.codFornec}}" class="btn btn-primary">Alterar</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -29,5 +31,14 @@
         </div>
 
         <div th:include="layout :: footer" id="footer">(footer)</div>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                
+                /*bootbox.confirm("Eu não acredito!!!!", function(){
+
+                });*/
+
+            });
+        </script>
     </body>
 </html> 

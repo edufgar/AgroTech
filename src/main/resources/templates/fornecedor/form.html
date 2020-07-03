@@ -11,18 +11,21 @@
 
             <div class="border border-dark">
 
-                <form>
+                <form th:action="@{/fornecedor/(form)}" th:object="${fornecedor}" method="POST">
+
+                    <input type="hidden" th:field="*{codFornec}">
+
                     <div class="form-group">
                         <label>Nome</label>
-                        <input type="text" class="form-control">
+                        <input type="text" th:field="*{nome}" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Telefone</label>
-                        <input type="text" class="form-control">
+                        <input type="text" th:field="*{telefone}" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="text" class="form-control">
+                        <input type="text" th:field="*{email}" class="form-control">
                     </div>
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>
