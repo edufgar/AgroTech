@@ -11,7 +11,7 @@
 
             <p><a th:href="@{/fornecedor/novo}" class="btn btn-primary btn-lg">Novo</a></p>
 
-            <table class="table">
+            <table class="table" id="fornecedores">
                 <thead class="thead-light">
                     <th scope="col">Nome</th>
                     <th scope="col">Telefone</th>
@@ -23,7 +23,11 @@
                         <td th:text="${umfornecedor.nome}"></td>
                         <td th:text="${umfornecedor.telefone}"></td>
                         <td th:text="${umfornecedor.email}"></td>
-                        <td><a th:href="@{'/fornecedor/alterar/' + ${umfornecedor.codFornec}}" class="btn btn-primary">Alterar</a></td>
+                        <td>
+                            <a th:href="@{'/fornecedor/alterar/' + ${umfornecedor.codFornec}}" class="btn btn-primary">Alterar</a>
+                            <button class='btn btn-danger js-delete'
+                                th:data-id="${umfornecedor.codFornec}"><span class="oi oi-bug"></span>Excluir</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -32,11 +36,23 @@
 
         <div th:include="layout :: footer" id="footer">(footer)</div>
         <script type="text/javascript">
+
             $(document).ready(function(){
                 
-                /*bootbox.confirm("Eu não acredito!!!!", function(){
-
-                });*/
+                $("#fornecedores").on("click", ".js-delete", function(){
+                    var button = $(this);
+                    bootbox.confirm("Você tem certeza que quer excluir este fornecedor?",function(result){
+                        if(result){
+                            $.ajax({
+                                url: "/fornecedor/delete/" + button.attr("data-id"),
+                                method: "GET",
+                                success: function () {
+                                    window.location.href = "/fornecedor/"
+                                }
+                            });
+                        }
+                    });
+                });
 
             });
         </script>
