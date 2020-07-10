@@ -1,10 +1,12 @@
 package br.univille.agrotech.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Produto {
@@ -15,7 +17,10 @@ public class Produto {
     @Column(length = 1000)
     private String descricao;
     private float valorUnitario;
-    private String unidade;    
+    private String unidade;
+    
+    @ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.MERGE })
+    private Agricultor agricultor;
 
     public long getCodProduto() {
         return codProduto;
@@ -48,6 +53,14 @@ public class Produto {
 
     public void setUnidade(String unidade) {
         this.unidade = unidade;
+    }
+
+    public Agricultor getAgricultor() {
+        return agricultor;
+    }
+
+    public void setAgricultor(Agricultor agricultor) {
+        this.agricultor = agricultor;
     }
 
 }

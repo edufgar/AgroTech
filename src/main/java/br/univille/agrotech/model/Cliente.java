@@ -1,10 +1,12 @@
 package br.univille.agrotech.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Cliente {
@@ -15,6 +17,10 @@ public class Cliente {
     private String nome;
     private String telefone;
     private String email;
+
+    @ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.MERGE })
+    private Agricultor agricultor;    
+
 
     public long getCodCliente() {
         return codCliente;
@@ -46,6 +52,14 @@ public class Cliente {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Agricultor getAgricultor() {
+        return agricultor;
+    }
+
+    public void setAgricultor(Agricultor agricultor) {
+        this.agricultor = agricultor;
     }
 
 }
