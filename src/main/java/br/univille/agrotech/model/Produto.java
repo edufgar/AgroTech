@@ -22,6 +22,9 @@ public class Produto {
     @ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.MERGE })
     private Agricultor agricultor;
 
+    @ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.MERGE })
+    private Fornecedor fornecedor;
+
     public long getCodProduto() {
         return codProduto;
     }
@@ -61,6 +64,14 @@ public class Produto {
 
     public void setAgricultor(Agricultor agricultor) {
         this.agricultor = agricultor;
+    }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
 
 }
