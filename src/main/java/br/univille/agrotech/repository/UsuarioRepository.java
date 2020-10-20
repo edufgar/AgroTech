@@ -1,4 +1,4 @@
-package br.univille.agrotech.model;
+package br.univille.agrotech.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
  

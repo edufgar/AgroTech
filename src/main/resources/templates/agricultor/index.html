@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head th:include="layout :: htmlhead"></head>
+
+    <body>
+        <div class="container">
+            <nav th:replace="layout :: menu">(menu)</nav>
+            <h1>Agricultores</h1>
+
+            <p><a th:href="@{/agricultor/novo}" class="btn btn-primary btn-lg">Novo</a></p>
+
+            <table class="table" id="agricultores">
+                <thead class="thead-light">
+                    <th scope="col">Nome</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Email</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <tr th:each="umagricultor : ${listaagricultores}">
+                        <td th:text="${umagricultor.nome}"></td>
+                        <td th:text="${umagricultor.telefone}"></td>
+                        <td th:text="${umagricultor.email}"></td>
+                        <td>
+                            <a th:href="@{'/agricultor/alterar/' + ${umagricultor.codAgric}}" class="btn btn-primary">Alterar</a>
+                            <button class='btn btn-danger js-delete'
+                                th:data-id="${umagricultor.codAgric}"><span class="oi oi-bug"></span>Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div th:include="layout :: footer" id="footer">(footer)</div>
+        <script type="text/javascript">
+
+            $(document).ready(function(){
+                
+                $("#agricultores").on("click", ".js-delete", function(){
+                    var button = $(this);
+                    bootbox.confirm("Você tem certeza que quer excluir este agricultor?",function(result){
+                        if(result){
+                            $.ajax({
+                                url: "/agricultor/delete/" + button.attr("data-id"),
+                                method: "GET",
+                                success: function () {
+                                    window.location.href = "/agricultor/"
+                                }
+                            });
+                        }
+                    });
+                });
+
+            });
+        </script>
+    </body>
+</html> 

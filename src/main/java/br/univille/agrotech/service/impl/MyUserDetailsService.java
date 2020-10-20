@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.univille.agrotech.model.Usuario;
-import br.univille.agrotech.model.UsuarioRepository;
+import br.univille.agrotech.repository.UsuarioRepository;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
