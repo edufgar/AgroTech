@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head th:include="layout :: htmlhead"></head>
+
+    <body>
+        <div class="container">
+            <nav th:replace="layout :: menu">(menu)</nav>
+            <h1>Funcionarios</h1>
+
+            <p><a th:href="@{/funcionario/novo}" class="btn btn-primary btn-lg">Novo</a></p>
+
+            <table class="table" id="funcionarios">
+                <thead class="thead-light">
+                    <th scope="col">Nome</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Email</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <tr th:each="umfuncionario : ${listafuncionarios}">
+                        <td th:text="${umfuncionario.nome}"></td>
+                        <td th:text="${umfuncionario.telefone}"></td>
+                        <td th:text="${umfuncionario.email}"></td>
+                        <td>
+                            <a th:href="@{'/funcionario/alterar/' + ${umfuncionario.codFunc}}" class="btn btn-primary">Alterar</a>
+                            <button class='btn btn-danger js-delete'
+                                th:data-id="${umfuncionario.codFunc}"><span class="oi oi-bug"></span>Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div th:include="layout :: footer" id="footer">(footer)</div>
+        <script type="text/javascript">
+
+            $(document).ready(function(){
+                
+                $("#funcionarios").on("click", ".js-delete", function(){
+                    var button = $(this);
+                    bootbox.confirm("Você tem certeza que quer excluir este funcionario?",function(result){
+                        if(result){
+                            $.ajax({
+                                url: "/funcionario/delete/" + button.attr("data-id"),
+                                method: "GET",
+                                success: function () {
+                                    window.location.href = "/funcionario/"
+                                }
+                            });
+                        }
+                    });
+                });
+
+            });
+        </script>
+    </body>
+</html> 
