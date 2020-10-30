@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:include="layout :: htmlhead"></head>
+    <body>
+        <div class="container">
+            <nav th:replace="layout :: menu">(menu)</nav>
+            <div class="border border-dark">
+                <form th:action="@{/venda}"  action="#" method="post">
+                    <div th:object="${venda}">                  
+                        <input type="hidden" id="txtid" th:field="${venda.id}" />
+                        <div class="form-group">
+                            <label for="datetimepicker1">Data da Venda</label>
+                            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"
+                                    th:field="${venda.data}"/>
+                                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="slcFuncionario">Funcionário</label>
+                            <select class="form-control" id="slcFuncionario" th:field="${venda.funcionarioResponsavel}">
+                                <option th:each="umFuncionario : ${listaFuncionario}" th:value="${umFuncionario.id}" th:text="${umFuncionario.nome}"></option>
+                            </select>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="slcCliente">Cliente</label>
+                            <select class="form-control" id="slcCliente" th:field="${venda.cliente}">
+                                <option th:each="umCliente : ${listaCliente}" th:value="${umCliente.id}" th:text="${umCliente.nome}"></option>
+                            </select>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="slcstatus">Status</label>
+                            <select class="form-control" id="slcstatus" th:field="${venda.status}">
+                                <option th:value="Programada">Programada</option>
+                                <option th:value="Atendimento">Atendimento</option>
+                                <option th:value="Finalizada">Finalizada</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" name="save" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+        <div th:include="layout :: footer" id="footer">(footer)</div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker({
+                    format:"DD/MM/YYYY HH:mm"                  
+                });
+            });
+        </script>
+    </body>
+</html>
