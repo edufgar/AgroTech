@@ -24,6 +24,9 @@ public class Venda {
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date dataVenda;
 
+    private String status;
+    private float valorvenda;
+
     @ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.MERGE })
     private Funcionario codFunc;
     @ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.MERGE })
@@ -71,6 +74,24 @@ public class Venda {
 
     public void setListaItemVenda(List<ItemVenda> listaItemVenda) {
         this.listaItemVenda = listaItemVenda;
-    } 
+    }
+    
+
+public String getStatus() {
+	return status;
+}
+
+public void setStatus(String status) {
+    this.status = status;    
+}
+
+public float getValorvenda() {
+	return valorvenda;
+}
+
+public void setValorvenda(float valorvenda) {
+	this.valorvenda = valorvenda;
+}
+
 
 }

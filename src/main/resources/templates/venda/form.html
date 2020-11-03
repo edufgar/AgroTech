@@ -12,16 +12,18 @@
                             <label for="datetimepicker1">Data da Venda</label>
                             <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
                                 <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"
-                                    th:field="${venda.data}"/>
+                                    th:field="${venda.dataVenda}"/>
                                 <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
                             </div>
                         </div>
+
+                        
                        
                         <div class="form-group">
                             <label for="slcFuncionario">Funcionário</label>
-                            <select class="form-control" id="slcFuncionario" th:field="${venda.funcionarioResponsavel}">
+                            <select class="form-control" id="slcFuncionario" th:field="${venda.codFunc}">
                                 <option th:each="umFuncionario : ${listaFuncionario}" th:value="${umFuncionario.id}" th:text="${umFuncionario.nome}"></option>
                             </select>
                         </div>
@@ -34,9 +36,9 @@
                         </div>
                        
                         <div class="form-group">
-                            <label for="slcstatus">Status</label>
-                            <select class="form-control" id="slcstatus" th:field="${venda.status}">
-                                <option th:value="Programada">Programada</option>
+                            <label for="slcStatus">Status</label>
+                            <select class="form-control" id="slcStatus" th:field="${venda.status}">
+                                <option th:value="Agendada">Agendada</option>
                                 <option th:value="Atendimento">Atendimento</option>
                                 <option th:value="Finalizada">Finalizada</option>
                             </select>

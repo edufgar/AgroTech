@@ -4,12 +4,15 @@
     <body>
         <div class="container">
             <nav th:replace="layout :: menu">(menu)</nav>
+            <h1>Vendas</h1>
+
             <a href="form.html" th:href="@{/venda/nova}" class="btn btn-primary btn-lg" role="button">Nova</a>
             <div class="border border-dark">
                 <table class="table">
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">Data</th>
+                            <th scope="col">Valor Total da Vendas</th>
                             <th scope="col">Funcionário</th>
                             <th scope="col">Cliente</th>
                             <th scope="col"></th>
@@ -18,7 +21,8 @@
                     <tbody>
                         <tr scope="row" th:each="umavend : ${listaVenda}">
                             <td th:text="${#dates.format(umavend.data, 'dd/MM/yyyy HH:mm')}"></td>
-                            <td th:text="${umavend.funcionarioResponsavel.nome}"></td>
+                            <td th:text="${umavend.venda.valorvenda}"></td>
+                            <td th:text="${umavend.codFunc.nome}"></td>
                             <td th:text="${umavend.cliente.nome}"></td>
                             <td>
                             </td>
