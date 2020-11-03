@@ -13,15 +13,15 @@
                         <tr>
                             <th scope="col">Data</th>
                             <th scope="col">Valor Total da Vendas</th>
-                            <th scope="col">Funcionário</th>
-                            <th scope="col">Cliente</th>
+                            <th scope="col" style="width: 35%;" >Funcionário</th>
+                            <th scope="col" style="width: 35%;" >Cliente</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr scope="row" th:each="umavend : ${listaVenda}">
                             <td th:text="${#dates.format(umavend.data, 'dd/MM/yyyy HH:mm')}"></td>
-                            <td th:text="${umavend.venda.valorvenda}"></td>
+                            <td th:text="${umavend.valorvenda}"></td>
                             <td th:text="${umavend.codFunc.nome}"></td>
                             <td th:text="${umavend.cliente.nome}"></td>
                             <td>
