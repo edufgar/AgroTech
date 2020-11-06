@@ -47,6 +47,32 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="card">
+                        <div class="card-header">Adicionar Produtos</div>
+                        <div class="card-body">
+                            <div class="container" th:object="${novoitemvenda}">
+                              <div class="row">
+                                <div class="col-sm">
+                                  <select class="form-control" id="slcProdutos" th:field="${novoitemvenda.codProduto}">
+                                    <option th:each="umProd : ${listaProduto}" th:value="${umProd.codProduto}" th:text="${umProd.descricao}"></option>
+                                  </select>
+                                </div>
+                                <div class="col-sm">
+                                  <label for="txtvalor">Valor</label>
+                                </div>
+                                <div class="col-sm">
+                                  <input type="text" class="form-control" id="txtvalor" th:field="${novoitemvenda.valorUnitario}" placeholder="Valor">
+                                </div>
+                                <div class="col-sm">
+                                    <button type="submit" name="insertprod" class="btn btn-primary">Inserir item</button>
+                                </div>
+                              </div>
+                            </div>
+                            <br>                           
+                        </div>
+                    </div>
+
                     <button type="submit" name="save" class="btn btn-primary">Enviar</button>
                 </form>
             </div>
